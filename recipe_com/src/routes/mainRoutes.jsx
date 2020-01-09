@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import Login from '../pages/login'
 import Profile from '../pages/profile'
 import NotMatch from '../pages/notMatch'
-import Home from '../pages/Home'
+import Home from '../pages/home'
 
 import { Provider } from 'unistore/react';
 import { store } from '../store/store';

@@ -17,7 +17,7 @@ class Header extends React.Component{
     render(){
         return(
             <React.Fragment>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-orange">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-orange sticky-top mb-0">
                     <Link className="navbar-brand mr-5" to="/">
                         <img src={logo} alt="logo-web" style={{height:'40px'}}/>
                         <span className="logo-name">Recipe.com</span>
