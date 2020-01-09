@@ -9,17 +9,18 @@ const initialState = {
                 picture : '',
                 token : '',
                 auth : false,
-                isLoading : false,
                 search: '',
                 listRecipe: [],
                 data: {},
-                category : ''
+                category : '',
+                isLoading: true
                 };
 
 export const store = createStore(initialState);
 
 export const actions = store => ({
     setInput : (state, event) => {
+        console.log(event.target.name, event.target.value)
         store.setState({ [event.target.name] : event.target.value })
     }, 
     setChange: (state, key, value) => {
