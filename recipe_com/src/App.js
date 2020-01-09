@@ -1,18 +1,11 @@
 import React from 'react';
 import './App.css';
-import MainRoute from "./routes/MainRoute"
-import { Provider } from 'unistore/react'
-import { store } from './store/store'
+import MainRoute from './routes/mainRoutes';
+import './style/bootstrap.min.css';
 
-class App extends React.Component {
-    render() {
-        return (
-            <div className='App'>
-                <Provider store={store}>
-                    <MainRoute />
-                </Provider>
-            </div>
-        )
-    }
+function App() {
+  return (
+    <MainRoute />
+  );
 }
 export default App;
