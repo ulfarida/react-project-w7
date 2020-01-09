@@ -13,7 +13,7 @@ class Profile extends Component {
             <React.Fragment>
                 <Header />
                 <div className="container-fluid d-flex justify-content-center">
-                    <div class="card mt-3" style={{maxWidth:"30%"}}>
+                    <div class="card mt-3" style={{maxWidth:"100%"}}>
                         <div class="row no-gutters d-flex justify-content-center mt-3">
                             <div class="col-md-4 d-flex justify-content-center">
                                 <div className="wrapper-image" style={{maxWidth: "70%"}}>
@@ -23,10 +23,10 @@ class Profile extends Component {
                             </div>
                             <div class="col-md-6 d-flex flex-column align-content-center">
                                 <div class="card-body">
-                                    <div className="card-title username font-weight-bold ">
+                                    <div className="card-title username font-weight-bold text-center">
                                         {username} username
                                     </div>
-                                    <div className="card-text text-info fullname">
+                                    <div className="card-text text-info fullname text-center">
                                         {fullname} full name lalala yeyeye
                                     </div>
                                 </div>
