@@ -30,11 +30,11 @@ export const actions = store => ({
     },
 
     handleGetApi: async (state, urlHeadLine) => {
+        console.log('masuk')
         await axios
         .get(urlHeadLine)
         .then(async (response) => {
             await store.setState({data: response.data})
-            console.log(response.data)
         })
         .catch((error) => {
             console.warn(error)
