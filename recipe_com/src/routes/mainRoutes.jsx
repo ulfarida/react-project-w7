@@ -5,17 +5,20 @@ import { BrowserRouter } from "react-router-dom";
 import Login from '../pages/login'
 import Profile from '../pages/profile'
 import NotMatch from '../pages/notMatch'
+import Home from '../pages/home'
 
 import { Provider } from 'unistore/react';
 import { store } from '../store/store';
+
 
 const Mainroute = () => {
     return (
         <Provider store={store}>
             <BrowserRouter>
                 <Switch>
-                    <Route exact path='/login' component={Login} />
-                    <Route exact path='/profile' component={Profile} />
+                    <Route exact path="/" component={Home}/>
+                    <Route path='/login' component={Login} />
+                    <Route path='/profile' component={Profile} />
                     <Route component={NotMatch} />
                 </Switch>
             </BrowserRouter>
