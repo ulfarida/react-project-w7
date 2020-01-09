@@ -4,7 +4,7 @@ import '../style/header.css';
 import logo from '../images/logo.svg';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from "unistore/react";
-import { actions } from "../store/store";
+import { actions, store } from "../store/store";
 
 class Header extends React.Component{
     handleLogout = () => {
@@ -35,10 +35,10 @@ class Header extends React.Component{
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" role="button" id="categoryToogle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</Link>
                                 <div class="dropdown-menu bg-warning" aria-labelledby="categoryToogle">
-                                    <Link class="dropdown-item">Breakfast</Link>
-                                    <Link class="dropdown-item">Lunch</Link>
-                                    <Link class="dropdown-item">Dinner</Link>
-                                    <Link class="dropdown-item">Dessert</Link>
+                                    <Link to='/breakfast' class="dropdown-item" onClick={() => store.setState({category:'breakfast'})}>Breakfast</Link>
+                                    <Link class="dropdown-item" onClick={() => store.setState({category:'lunch'})}>Lunch</Link>
+                                    <Link class="dropdown-item" onClick={() => store.setState({category:'dinner'})}>Dinner</Link>
+                                    <Link class="dropdown-item" onClick={() => store.setState({category:'dessert'})}>Dessert</Link>
                                 </div>
                             </li>
                         </ul>

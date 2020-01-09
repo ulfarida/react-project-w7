@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import Header from "../components/header"
+import Header from "../components/Header"
 import { withRouter } from 'react-router-dom'
 import { connect } from "unistore/react";
 import { actions, store } from "../store/store";
@@ -10,6 +10,7 @@ class Profile extends Component {
     render () {
         return (
             <div>
+                <Header/>
                 <div className="container" style={{marginTop:'20%'}}>
                     <div className="row">
                         <div className=" col-lg-offset-3 col-lg-6">
