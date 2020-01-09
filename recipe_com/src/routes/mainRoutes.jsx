@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 
 import Login from '../pages/login'
+import Profile from '../pages/profile'
 
 import { Provider } from 'unistore/react';
 import { store } from '../store/store';
@@ -13,6 +14,7 @@ const Mainroute = () => {
             <BrowserRouter>
                 <Switch>
                     <Route exact path='/login' component={Login} />
+                    <Route exact path='/profile' component={Profile} />
                 </Switch>
             </BrowserRouter>
         </Provider>

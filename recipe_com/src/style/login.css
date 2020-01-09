@@ -1,33 +1,11 @@
-body{background: #eee url(http://subtlepatterns.com/patterns/sativa.png);}
-html,body{
-    position: relative;
-    height: 100%;
-}
-
 .login-container{
     position: relative;
     width: 300px;
     margin: 80px auto;
-    padding: 20px 40px 40px;
+    padding: 40px;
     text-align: center;
     background: #fff;
     border: 1px solid #ccc;
-}
-
-#output{
-    position: absolute;
-    width: 300px;
-    top: -75px;
-    left: 0;
-    color: #fff;
-}
-
-#output.alert-success{
-    background: rgb(25, 204, 25);
-}
-
-#output.alert-danger{
-    background: rgb(228, 105, 105);
 }
 
 .login-container::before,.login-container::after{
@@ -54,11 +32,17 @@ html,body{
 }
 
 .avatar{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar img{
     width: 100px;height: 100px;
-    margin: 10px auto 30px;
-    border-radius: 100%;
-    border: 2px solid #aaa;
     background-size: cover;
+    margin-bottom: 10px;
 }
 
 .form-box input{
@@ -90,43 +74,12 @@ html,body{
 .form-box button.login{
     margin-top:15px;
     padding: 10px 20px;
+    background-color: #F28705;
 }
 
-.animated {
+/* .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      -webkit-transform: translateY(20px);
-      transform: translateY(20px);
-    }
-  
-    100% {
-      opacity: 1;
-      -webkit-transform: translateY(0);
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      -webkit-transform: translateY(20px);
-      -ms-transform: translateY(20px);
-      transform: translateY(20px);
-    }
-  
-    100% {
-      opacity: 1;
-      -webkit-transform: translateY(0);
-      -ms-transform: translateY(0);
-      transform: translateY(0);
-    }
-  }
-
-  
+} */
