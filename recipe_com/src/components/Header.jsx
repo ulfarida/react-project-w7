@@ -48,7 +48,7 @@ class Header extends React.Component{
                         <div className="dropdown nav-item">
                             <Link className="nav-link dropdown-toggle" role="button" id="othersToggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span>Profile</span>
-                                <img className="small-profile-pic ml-2" src={this.props.image} alt="profile"/>
+                                <img className="small-profile-pic ml-2" src={require("../images/avatar1.png")} alt="profile"/>
                             </Link>
                             <div class="dropdown-menu bg-warning profile-dropdown" aria-labelledby="categoryToogle">
                                 <Link class="dropdown-item" to="/profile">Profile</Link>
@@ -73,4 +73,4 @@ class Header extends React.Component{
     }
 }
 
-export default connect("auth", actions)(withRouter(Header))
+export default connect("auth, image", actions)(withRouter(Header))

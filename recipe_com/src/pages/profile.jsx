@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import Header from "../components/header"
+import Header from "../components/Header"
 import { withRouter } from 'react-router-dom'
 import { connect } from "unistore/react";
 import { actions, store } from "../store/store";
@@ -8,43 +8,67 @@ import logo from '../images/logo-orange.svg'
 
 class Profile extends Component {
     render () {
+        const {username, fullname} = this.props
         return (
-            <div>
-                <div className="container" style={{marginTop:'20%'}}>
-                    <div className="row">
-                        <div className=" col-lg-offset-3 col-lg-6">
-                            <div className="panel panel-default">
-                                <div className="panel-body">
-                                    <div className="row">
-                                        <div className="col-lg-12">
-                                            <div className="row">
-                                                <div className="col-sm-offset-3 col-sm-6 col-md-offset-3 col-md-6 col-lg-offset-3 col-lg-6">
-                                                    <img className="img-circle img-responsive" src={this.props.picture}/>
-                                                </div>
-                                            </div>
-                                        </div>
+            <React.Fragment>
+                <Header />
+                <div className="container-fluid d-flex justify-content-center">
+                    <div class="card mt-3" style={{maxWidth:"30%"}}>
+                        <div class="row no-gutters d-flex justify-content-center mt-3">
+                            <div class="col-md-4 d-flex justify-content-center">
+                                <div className="wrapper-image" style={{maxWidth: "70%"}}>
+                                    <img
+                                    src={require(`../images/avatar1.png`)} className="card-img rounded-circle" />
+                                </div>
+                            </div>
+                            <div class="col-md-6 d-flex flex-column align-content-center">
+                                <div class="card-body">
+                                    <div className="card-title username font-weight-bold ">
+                                        {username} username
                                     </div>
-                                    <div className="row">
-                                        <div className="col-lg-12">
-                                            <div className="row">
-                                                <div className="centered-text col-sm-offset-3 col-sm-6 col-md-offset-3 col-md-6 col-lg-offset-3 col-lg-6">
-                                                    <div itemscope="" itemtype="http://schema.org/Person">
-                                                        <h2> <span itemprop="name">{this.props.fullname}</span></h2>
-                                                        <p itemprop="jobTitle">{this.props.username}</p>
-                                                        <p itemprop="email"><a href="#">{this.props.email}</a> </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div className="card-text text-info fullname">
+                                        {fullname} full name lalala yeyeye
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div className="row justify-content-center">
+                            <div className="col-md-9">
+                                <div className="wrapper-profile-info mt-5">
+                                    <div class="table-responsive">
+                                        <table class="table table-borderless">
+                                            <tbody>
+                                                <tr>
+                                                    <td className="w-50">Fullname</td>
+                                                    <td>:</td>
+                                                    <td>{fullname}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td className="w-50">Gender</td>
+                                                    <td>:</td>
+                                                    <td>{fullname}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td className="w-50">Phone Number</td>
+                                                    <td>:</td>
+                                                    <td>lalala </td>
+                                                </tr>
+                                                <tr>
+                                                    <td className="w-50">Twitter</td>
+                                                    <td>:</td>
+                                                    <td>@twitter</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
                 </div>
-            </div>    
+            </React.Fragment>
         );
     }
 }
 
-export default connect("username, fullname, email, picture", actions)(Profile);
+export default connect("username, fullname, profilePicture", actions)(Profile);
