@@ -7,7 +7,9 @@ const initialState = {
                 email : '',
                 picture : '',
                 token : '',
-                auth : false
+                auth : false,
+                listArticle : [],
+                isLoading : false
                 };
 
 export const store = createStore(initialState);

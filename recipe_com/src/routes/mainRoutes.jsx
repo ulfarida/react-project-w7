@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import Login from '../pages/login'
 import Profile from '../pages/profile'
+import Articles from '../pages/articles'
 import NotMatch from '../pages/notMatch'
 
 import { Provider } from 'unistore/react';
@@ -16,6 +17,7 @@ const Mainroute = () => {
                 <Switch>
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/profile' component={Profile} />
+                    <Route exact path='/articles' component={Articles} />
                     <Route component={NotMatch} />
                 </Switch>
             </BrowserRouter>
