@@ -9,9 +9,9 @@ const initialState = {
                 picture : '',
                 token : '',
                 auth : false,
-                isLoading : false,
                 search: '',
                 listRecipe: [],
+                isLoading: true,
                 data: {}
                 };
 
@@ -19,6 +19,7 @@ export const store = createStore(initialState);
 
 export const actions = store => ({
     setInput : (state, event) => {
+        console.log(event.target.name, event.target.value)
         store.setState({ [event.target.name] : event.target.value })
     }, 
     setChange: (state, key, value) => {
@@ -34,8 +35,6 @@ export const actions = store => ({
         .get(urlHeadLine)
         .then(async (response) => {
             await store.setState({data: response.data})
-            console.warn(response.data)
-            console.warn('state data',response.data)
         })
         .catch((error) => {
             console.warn(error)
