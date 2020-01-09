@@ -13,8 +13,8 @@ const Mainroute = () => {
         <Provider store={store}>
             <BrowserRouter>
                 <Switch>
-                    <Route component={NotMatch} />
                     <Route exact path='/login' component={Login} />
+                    <Route component={NotMatch} />
                 </Switch>
             </BrowserRouter>
         </Provider>

@@ -1,3 +1,24 @@
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 200;
+    src: local('Montserrat ExtraLight'), local('Montserrat-ExtraLight'), url(https://fonts.gstatic.com/s/montserrat/v14/JTURjIg1_i6t8kCHKm45_aZA3gfD_u50.woff2) format('woff2');
+  }
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Montserrat Bold'), local('Montserrat-Bold'), url(https://fonts.gstatic.com/s/montserrat/v14/JTURjIg1_i6t8kCHKm45_dJE3gnD_g.woff2) format('woff2');
+}
+
 *{-webkit-box-sizing:border-box;box-sizing:border-box}
 body{
     padding:0;
@@ -29,7 +50,7 @@ body{
 }
 
 .notfound .notfound-404 h1{
-    font-family:montserrat,sans-serif;
+    font-family:'Montserrat', sans-serif;
     font-size:236px;
     font-weight:200;
     margin:0;
@@ -43,7 +64,7 @@ body{
 }
 
 .notfound .notfound-404 h2{
-    font-family:montserrat,sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size:28px;
     font-weight:400;
     text-transform:uppercase;
@@ -59,7 +80,7 @@ body{
 }
 
 .notfound a{
-    font-family:montserrat,sans-serif;
+    font-family:'Montserrat', sans-serif;
     display:inline-block;
     font-weight:700;
     text-decoration:none;
