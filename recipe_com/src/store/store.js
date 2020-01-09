@@ -1,4 +1,5 @@
 import createStore from 'unistore';
+import axios from 'axios';
 
 const initialState = { 
                 fullname :'',
@@ -10,6 +11,10 @@ const initialState = {
                 auth : false,
                 listArticle : [],
                 isLoading : false
+                search: '',
+                listRecipe: [],
+                isLoading: false,
+                data: ''
                 };
 
 export const store = createStore(initialState);
@@ -23,5 +28,16 @@ export const actions = store => ({
     },
     setManyChanges: (state, dict) => {
         store.setState(dict)
+    },
+
+    handleGetApi: async (state, urlHeadLine) => {
+        await axios
+        .get(urlHeadLine)
+        .then(async (response) => {
+            await store.setState({data: response.data})
+        })
+        .catch((error) => {
+            console.warn(error)
+        })
     }
 })
