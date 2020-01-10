@@ -6,29 +6,49 @@ import { actions, store } from "../store/store";
 import axios from "axios"
 import logo from '../images/logo-orange.svg'
 
+
+
 class RecipeAnalysis extends Component {
     // input ingredients json body, method post
     nutritionGetApi = () => {
         const self = this
+        // format input ingredients for api
         const input = {
             ingr : this.props.ingredients.split(',')
         }
         console.log('cek input',input)
         axios
             .post("https://api.edamam.com/api/nutrition-details?app_id=8615d785&app_key=7fa308a07eadeecabb5e58925396a331", input)
-            .then(function(response) {
-                console.log('cek response',response)
+            .then(async function(response) {
+                console.log('cek response sblm if',response)
                 if(response.data.hasOwnProperty("calories")) {
+                    console.log('props masuk if axios',self.props)
                     console.log('cek response',response.data.calories)
-                    store.setState({calories : response.data.calories})
+                    console.log('cek total nutri',response.data.totalNutrients)
+                    await store.setState({calories : response.data.calories})
+                    const totalNutrients =  response.data.totalNutrients
+
+                    const selectedNutritiensData = {
+                        [totalNutrients.ENERC_KCAL.label] :  Math.round(totalNutrients.ENERC_KCAL.quantity)+' '+totalNutrients.ENERC_KCAL.unit,
+                        [totalNutrients.CHOLE.label] :  Math.round(totalNutrients.CHOLE.quantity)+' '+totalNutrients.CHOLE.unit,
+                        [totalNutrients.FAT.label] :  Math.round(totalNutrients.FAT.quantity)+' '+totalNutrients.FAT.unit,
+                        [totalNutrients.PROCNT.label] :  Math.round(totalNutrients.PROCNT.quantity)+' '+totalNutrients.PROCNT.unit
+                        }
+
+                    console.log('cek sesuatu',selectedNutritiensData)
+                    store.setState({selectedNutritiens: selectedNutritiensData})
+                    }
                 }
-            })
+                
+            )
             .catch(function(error) {
                 console.log(error)
-                store.setState({calories : 'coba lagi'})
+                // if error show to user try agian
+                store.setState({calories : 'try again'})
             })
-    }
+        }
     render() {
+        console.log('this props selectedNutritiens',this.props.selectedNutritiens)
         return (
             <div className="container">
                 <div className="row justify-content-center">
@@ -37,7 +57,7 @@ class RecipeAnalysis extends Component {
                             <form action="" method="" onSubmit={e => e.preventDefault()}>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Input ingredients</label>
-                                    <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" placeholder="ingredients" name="ingredients" onChange={e => this.props.setInput(e)}></textarea>
+                                    <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" placeholder="ingredients separate with comma (,)" name="ingredients" onChange={e => this.props.setInput(e)}></textarea>
                                 </div>
                                 <button className="btn btn-info btn-block login" type="submit" onClick={() => this.nutritionGetApi()}>Analyze your meal</button>
                             </form>
@@ -46,9 +66,22 @@ class RecipeAnalysis extends Component {
                 </div>
                 <div className="row justify-content-center">
                     <div className="col-md-8 col-sm-12">
-                        <h1>
-                            {this.props.calories}
-                        </h1>
+                        <div className="wrapper-anlyzeresult d-flex flex-row">
+                            <div className="calories ml-3" style={{fontSize:'2em'}}>Energy :</div>
+                            <div className="calories ml-3" style={{fontSize:'3em'}}>{this.props.selectedNutritiens.Energy}</div>
+                        </div>
+                        <div className="wrapper-anlyzeresult d-flex flex-row">
+                            <div className="calories ml-3" style={{fontSize:'2em'}}>Cholesterol :</div>
+                            <div className="calories ml-3" style={{fontSize:'3em'}}>{this.props.selectedNutritiens.Cholesterol}</div>
+                        </div>
+                        <div className="wrapper-anlyzeresult d-flex flex-row">
+                            <div className="calories ml-3" style={{fontSize:'2em'}}>Fat :</div>
+                            <div className="calories ml-3" style={{fontSize:'3em'}}>{this.props.selectedNutritiens.Fat}</div>
+                        </div>
+                        <div className="wrapper-anlyzeresult d-flex flex-row">
+                            <div className="calories ml-3" style={{fontSize:'2em'}}>Protein :</div>
+                            <div className="calories ml-3" style={{fontSize:'3em'}}>{this.props.selectedNutritiens.Protein}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -56,4 +89,4 @@ class RecipeAnalysis extends Component {
     }
 }
 
-export default connect("ingredients, calories", actions)(withRouter(RecipeAnalysis));
+export default connect("selectedNutritiens, ingredients, calories, sesuatu", actions)(withRouter(RecipeAnalysis));

@@ -13,8 +13,7 @@ const initialState = {
                 listRecipe: [],
                 isLoading: true,
                 data: {},
-                jsonResult : {},
-                calories : ''
+                selectedNutritiens : ''
                 };
 
 export const store = createStore(initialState);
