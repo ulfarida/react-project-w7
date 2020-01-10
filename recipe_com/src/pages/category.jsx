@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header'; 
 import ListRecipe from '../components/ListRecipe';
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter, Redirect, Link } from "react-router-dom";
 import { connect } from "unistore/react";
 import { actions } from "../store/store";
 import '../style/bootstrap.min.css'
@@ -81,11 +81,9 @@ class Category extends React.Component {
                     null
                     :
                     <React.Fragment>
-                        <Link onClick = {()=>this.props.history.push('/recipe/'+this.props.number)}>
-                            <div className="category-title text-center brief-box">
-                                <h1>{this.props.category}</h1>
-                            </div>
-                        </Link>
+                        <div className="category-title text-center brief-box">
+                            <h1>{this.props.category}</h1>
+                        </div>
                         <div className="row search-result" style={{marginTop:'20px'}}>
                             {recipeToShow}
                         </div>
@@ -98,4 +96,4 @@ class Category extends React.Component {
         }
     }
 }
-export default connect('isLoading, data, search, listRecipe, category',actions)(withRouter(Category));
+export default connect('isLoading, data, search, listRecipe, category, auth',actions)(withRouter(Category));

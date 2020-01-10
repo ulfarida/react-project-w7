@@ -17,7 +17,7 @@ class Home extends React.Component {
         console.log(keyword)
         console.log(this.props)
         await this.props.handleGetApi(urlHeadLine+keyword)
-        this.props.history.push({pathname: '/search', search: '?q='+keyword})
+        this.props.history.replace({pathname: '/search', search: '?q='+keyword})
         const data = await this.props.data
         const dict = {
             isLoading: false,

@@ -11,6 +11,9 @@ class Recipe extends React.Component{
         const index = await this.props.match.params.index;
         const listRecipe = await this.props.listRecipe;
         const currentRecipe = listRecipe[index];
+        if(currentRecipe==null){
+            this.props.history.replace('/not_match')
+        }
         await this.props.setChange('recipeData', currentRecipe)
     }
 

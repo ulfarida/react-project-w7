@@ -96,4 +96,4 @@ class RecipeAnalysis extends Component {
     }
 }
 
-export default connect("selectedNutritiens, ingredients, calories, sesuatu", actions)(withRouter(RecipeAnalysis));
+export default connect("selectedNutritiens, ingredients, calories, auth", actions)(withRouter(RecipeAnalysis));
