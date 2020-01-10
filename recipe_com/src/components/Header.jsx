@@ -41,15 +41,15 @@ class Header extends React.Component{
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" role="button" id="categoryToogle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</Link>
                                 <div class="dropdown-menu bg-warning" aria-labelledby="categoryToogle">
-                                    <Link class="dropdown-item" onClick={() => this.handleCategory('breakfast')}>Breakfast</Link>
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('Breakfast')}>Breakfast</Link>
 
-                                    <Link class="dropdown-item" onClick={() => this.handleCategory('brunch')}>Brunch</Link>
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('Brunch')}>Brunch</Link>
                                     
-                                    <Link class="dropdown-item" onClick={() => this.handleCategory('lunch')}>Lunch</Link>
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('Lunch')}>Lunch</Link>
                                     
-                                    <Link class="dropdown-item" onClick={() => this.handleCategory('dinner')}>Dinner</Link>
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('Dinner')}>Dinner</Link>
                                     
-                                    <Link class="dropdown-item" onClick={() => this.handleCategory('dessert')}>Dessert</Link>
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('Sweets')}>Sweets</Link>
                                     
                                 </div>
                             </li>
@@ -57,7 +57,7 @@ class Header extends React.Component{
                         : null
                         }
                         {this.props.auth?
-                        <div className="dropdown nav-item">
+                        <div className="navbar-nav nav-item dropdown ml-auto">
                             <Link className="nav-link dropdown-toggle" role="button" id="othersToggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span>Profile</span>
                                 <img className="small-profile-pic ml-2" src={require("../images/avatar1.png")} alt="profile"/>

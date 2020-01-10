@@ -12,3 +12,9 @@
 .login {
     font-size: 20px;
 }
+
+@media(max-width: 575px){
+    .brief-box h1{
+        font-size: 35px;
+    }
+}

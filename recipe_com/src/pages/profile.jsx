@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import Header from "../components/Header"
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import { connect } from "unistore/react";
 import { actions, store } from "../store/store";
 import axios from "axios"
 import logo from '../images/logo-orange.svg'
 
-class Profile extends Component {
-    render () {
-        const {username, fullname} = this.props
+const Profile = (props) => {
+    const {username, fullname} = props
+    if(props.auth==false){
+        return(
+            <Redirect to={{pathname:'/login'}}/>
+        )
+    } else{
         return (
             <React.Fragment>
                 <Header />
@@ -71,4 +75,4 @@ class Profile extends Component {
     }
 }
 
-export default connect("username, fullname, profilePicture", actions)(Profile);
+export default connect("username, fullname, profilePicture, auth", actions)(withRouter(Profile));

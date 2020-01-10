@@ -8,7 +8,7 @@
     margin: 0;
     padding: 0;
     min-height: 60vh;
-    max-height: 90vh;
+    max-height: 89vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -135,6 +135,10 @@
 @media(max-width: 967px){
     .title-logo h1{
         font-size: 75px;
+    }
+    .title-popup{
+        height: 20%;
+        padding: 10px;
     }
 }
 
