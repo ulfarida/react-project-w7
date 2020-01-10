@@ -8,6 +8,7 @@ import Articles from '../pages/articles'
 import NotMatch from '../pages/notMatch'
 import RecipeAnalysis from '../pages/recipeAnalysis'
 import Home from '../pages/Home'
+import Category from '../pages/category'
 import { Provider } from 'unistore/react';
 import { store } from '../store/store';
 
@@ -18,10 +19,11 @@ const Mainroute = () => {
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/" component={Home}/>
-                    <Route exact path='/login' component={Login} />
-                    <Route exact path='/profile' component={Profile} />
+                    <Route path='/login' component={Login} />
+                    <Route path='/profile' component={Profile} />
                     <Route exact path='/articles' component={Articles} />
                     <Route exact path='/analyze' component={RecipeAnalysis} />
+                    <Route path='/category/:category' component={Category} />
                     <Route component={NotMatch} />
                 </Switch>
             </BrowserRouter>

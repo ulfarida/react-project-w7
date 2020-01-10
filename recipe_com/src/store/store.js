@@ -6,14 +6,15 @@ const initialState = {
                 username : '',
                 password : '',
                 email : '',
-                picture : '',
                 token : '',
                 auth : false,
+                profilePicture : '',
                 search: '',
                 listRecipe: [],
                 isLoading: true,
                 data: {},
                 selectedNutritiens : ''
+                category : ''
                 };
 
 export const store = createStore(initialState);
@@ -31,7 +32,6 @@ export const actions = store => ({
     },
 
     handleGetApi: async (state, urlHeadLine) => {
-        console.log('masuk')
         await axios
         .get(urlHeadLine)
         .then(async (response) => {
