@@ -4,7 +4,7 @@ import '../style/header.css';
 import logo from '../images/logo.svg';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from "unistore/react";
-import { actions } from "../store/store";
+import { actions, store } from "../store/store";
 
 class Header extends React.Component{
     handleLogout = () => {
@@ -14,10 +14,16 @@ class Header extends React.Component{
 
     }
 
+    handleCategory = (category) => {
+        this.forceUpdate()
+        this.props.history.push('/category/'+category);
+    }
+
     render(){
+
         return(
             <React.Fragment>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-orange">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-orange sticky-top mb-0">
                     <Link className="navbar-brand mr-5" to="/">
                         <img src={logo} alt="logo-web" style={{height:'40px'}}/>
                         <span className="logo-name">Recipe.com</span>
@@ -27,18 +33,24 @@ class Header extends React.Component{
                     </button>
 
                     <div className="collapse navbar-collapse" id="navbar">
-                        { this.props.auth? 
+                        { this.props.auth?
                         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">Article</Link>
+                                <Link className="nav-link" to="/articles">Article</Link>
                             </li>
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" role="button" id="categoryToogle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</Link>
                                 <div class="dropdown-menu bg-warning" aria-labelledby="categoryToogle">
-                                    <Link class="dropdown-item">Breakfast</Link>
-                                    <Link class="dropdown-item">Lunch</Link>
-                                    <Link class="dropdown-item">Dinner</Link>
-                                    <Link class="dropdown-item">Dessert</Link>
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('breakfast')}>Breakfast</Link>
+
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('brunch')}>Brunch</Link>
+                                    
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('lunch')}>Lunch</Link>
+                                    
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('dinner')}>Dinner</Link>
+                                    
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('dessert')}>Dessert</Link>
+                                    
                                 </div>
                             </li>
                         </ul>
@@ -72,5 +84,6 @@ class Header extends React.Component{
         )
     }
 }
+
 
 export default connect("auth, image", actions)(withRouter(Header))

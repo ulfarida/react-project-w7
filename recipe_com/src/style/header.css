@@ -9,7 +9,8 @@
 
 .bg-orange .nav-item .nav-link{
     color: white !important;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
+    font-size: 15px;
 }
 
 .logo-name{
@@ -28,6 +29,7 @@
     border-radius: 50%;
     background-color: #D95525;
     border: 2px solid #D95525;
+    text-overflow: clip;
 }
 
 .profile-dropdown{

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import Header from "../components/header"
+import Header from "../components/Header"
 import { withRouter } from 'react-router-dom'
 import { connect } from "unistore/react";
 import { actions, store } from "../store/store";
@@ -15,7 +15,7 @@ class Login extends Component {
             password : this.props.password
         }
         axios
-            .post("https://recipecom.free.beeceptor.com/login", input)
+            .post("https://reeraser.free.beeceptor.com/login", input)
             .then(function(response) {
                 if(response.data.hasOwnProperty("token")) {
                     store.setState({fullname : response.data.fullname})
@@ -34,8 +34,8 @@ class Login extends Component {
     
     render () {
         return (
-            <div>
-                {/* <Header {...this.props} /> */}
+            <React.Fragment>
+                <Header {...this.props} />
                     <div className="login-container">
                         <div className="avatar">
                             <img style={{width:'90%'}} src={logo} alt=""/>
@@ -49,7 +49,7 @@ class Login extends Component {
                             </form>
                         </div>
                     </div>   
-            </div>    
+            </React.Fragment>    
         );
     }
 }
