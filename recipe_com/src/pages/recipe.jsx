@@ -25,7 +25,7 @@ class Recipe extends React.Component{
             <React.Fragment>
                 <Header/>
                 {recipeDetail!==undefined?
-                <div className="container mt-5 mb-5">
+                <div className="container mt-lg-5 mb-5">
                     <div className="row">
                         <div className="col-lg-2"></div>
                         <div className="col-lg-8 outer-box pr-0 pl-0">
@@ -80,14 +80,14 @@ class Recipe extends React.Component{
                                 </ul>
                             </div>
                             
-                            <div className="link-box">
-                                <div className="col-md-6 col-sm-6 video-btn">
+                            <div className="row link-box">
+                                <div className="col-lg-6 col-md-6 col-sm-6 video-btn">
                                     <Link>
                                         <i className="material-icons">visibility</i>
                                         <h2>Watch Video</h2>
                                     </Link>
                                 </div>
-                                <div className="col-md-6 col-sm-6 more-btn">
+                                <div className="col-lg-6 col-md-6 col-sm-6 more-btn">
                                     <a href={recipeDetail.url}>
                                         <i className="material-icons">image_search</i>
                                         <h2>View Instruction</h2>

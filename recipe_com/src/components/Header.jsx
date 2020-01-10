@@ -57,7 +57,7 @@ class Header extends React.Component{
                         : null
                         }
                         {this.props.auth?
-                        <div className="dropdown nav-item">
+                        <div className="navbar-nav nav-item dropdown ml-auto">
                             <Link className="nav-link dropdown-toggle" role="button" id="othersToggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span>Profile</span>
                                 <img className="small-profile-pic ml-2" src={require("../images/avatar1.png")} alt="profile"/>

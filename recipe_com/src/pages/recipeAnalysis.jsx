@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import Header from "../components/Header"
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import { connect } from "unistore/react";
 import { actions, store } from "../store/store";
 import axios from "axios"
 import '../style/recipeAnalysis.css'
-import logo from '../images/logo-orange.svg'
-
-
 
 class RecipeAnalysis extends Component {
     // input ingredients json body, method post
@@ -50,46 +47,52 @@ class RecipeAnalysis extends Component {
         }
     render() {
         console.log('this props selectedNutritiens',this.props.selectedNutritiens)
-        return (
-            <React.Fragment>
-                <Header/>
-                <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-md-8 col-sm-12">
-                            <div className="form-box">
-                                <form action="" method="" onSubmit={e => e.preventDefault()}>
-                                    <div class="form-group">
-                                        <h2 className="input-ing text-center">Input Ingredients</h2>
-                                        <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="6" placeholder="ingredients separate with comma (,)" name="ingredients" onChange={e => this.props.setInput(e)}></textarea>
-                                    </div>
-                                    <button className="btn btn-info btn-block login" type="submit" onClick={() => this.nutritionGetApi()}>Analyze your meal</button>
-                                </form>
+        if(this.props.auth==false){
+            return(
+                <Redirect to={{pathname:'/login'}}/>
+            )
+        } else{
+            return (
+                <React.Fragment>
+                    <Header/>
+                    <div className="container">
+                        <div className="row justify-content-center">
+                            <div className="col-md-8 col-sm-12">
+                                <div className="form-box">
+                                    <form action="" method="" onSubmit={e => e.preventDefault()}>
+                                        <div class="form-group">
+                                            <h2 className="input-ing text-center">Input Ingredients</h2>
+                                            <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="6" placeholder="ingredients separate with comma (,)" name="ingredients" onChange={e => this.props.setInput(e)}></textarea>
+                                        </div>
+                                        <button className="btn btn-info btn-block login" type="submit" onClick={() => this.nutritionGetApi()}>Analyze your meal</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row justify-content-center">
+                            <div className="col-md-8 col-sm-12 mt-5 mb-5">
+                                <div className="wrapper-anlyzeresult d-flex flex-row">
+                                    <div className="calories ml-3" style={{fontSize:'20px'}}>Energy :</div>
+                                    <div className="calories ml-3" style={{fontSize:'20px'}}>{this.props.selectedNutritiens.Energy}</div>
+                                </div>
+                                <div className="wrapper-anlyzeresult d-flex flex-row">
+                                    <div className="calories ml-3" style={{fontSize:'20px'}}>Cholesterol :</div>
+                                    <div className="calories ml-3" style={{fontSize:'20px'}}>{this.props.selectedNutritiens.Cholesterol}</div>
+                                </div>
+                                <div className="wrapper-anlyzeresult d-flex flex-row">
+                                    <div className="calories ml-3" style={{fontSize:'20px'}}>Fat :</div>
+                                    <div className="calories ml-3" style={{fontSize:'20px'}}>{this.props.selectedNutritiens.Fat}</div>
+                                </div>
+                                <div className="wrapper-anlyzeresult d-flex flex-row">
+                                    <div className="calories ml-3" style={{fontSize:'20px'}}>Protein :</div>
+                                    <div className="calories ml-3" style={{fontSize:'20px'}}>{this.props.selectedNutritiens.Protein}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="row justify-content-center">
-                        <div className="col-md-8 col-sm-12 mt-5 mb-5">
-                            <div className="wrapper-anlyzeresult d-flex flex-row">
-                                <div className="calories ml-3" style={{fontSize:'20px'}}>Energy :</div>
-                                <div className="calories ml-3" style={{fontSize:'20px'}}>{this.props.selectedNutritiens.Energy}</div>
-                            </div>
-                            <div className="wrapper-anlyzeresult d-flex flex-row">
-                                <div className="calories ml-3" style={{fontSize:'20px'}}>Cholesterol :</div>
-                                <div className="calories ml-3" style={{fontSize:'20px'}}>{this.props.selectedNutritiens.Cholesterol}</div>
-                            </div>
-                            <div className="wrapper-anlyzeresult d-flex flex-row">
-                                <div className="calories ml-3" style={{fontSize:'20px'}}>Fat :</div>
-                                <div className="calories ml-3" style={{fontSize:'20px'}}>{this.props.selectedNutritiens.Fat}</div>
-                            </div>
-                            <div className="wrapper-anlyzeresult d-flex flex-row">
-                                <div className="calories ml-3" style={{fontSize:'20px'}}>Protein :</div>
-                                <div className="calories ml-3" style={{fontSize:'20px'}}>{this.props.selectedNutritiens.Protein}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </React.Fragment>
-        )
+                </React.Fragment>
+            )
+        }
     }
 }
 

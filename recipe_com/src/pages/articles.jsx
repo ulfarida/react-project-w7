@@ -5,6 +5,7 @@ import { connect } from "unistore/react";
 import { actions, store } from "../store/store";
 import axios from "axios"
 import '../style/articles.css'
+import { Redirect } from 'react-router-dom';
 
 const apiKey = "58fecc904b4e40ef920ae5582000d89a";
 const baseUrl = "https://newsapi.org/v2/";
@@ -39,22 +40,28 @@ class Articles extends Component {
             });
         }
 
-        return (
-            <div>
-                <Header {...this.props} />
-                <div className="container">
-                    <div className="row mt-5">
-                        <div className="col-md-3 col-12"></div>
-                        <div className="col-md-6 col-12">
-                            <h2 className="text-center">Health News</h2>
-                            {fullArticle}
+        if(this.props.auth==false){
+            return(
+                <Redirect to={{pathname:'/login'}}/>
+            )
+        } else{
+            return (
+                <div>
+                    <Header {...this.props} />
+                    <div className="container">
+                        <div className="row mt-5">
+                            <div className="col-md-3 col-12"></div>
+                            <div className="col-md-6 col-12">
+                                <h2 className="text-center">Health News</h2>
+                                {fullArticle}
+                            </div>
+                            <div className="col-md-3 col-12"></div>
                         </div>
-                        <div className="col-md-3 col-12"></div>
                     </div>
-                </div>
-            </div>    
-        );
+                </div>    
+            );
+        }
     }
 }
 
-export default connect("isLoading, data", actions)(Articles);
+export default connect("isLoading, data, auth", actions)(Articles);

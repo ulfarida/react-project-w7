@@ -1,13 +1,11 @@
 import React from 'react';
 import Header from '../components/Header'; 
 import ListRecipe from '../components/ListRecipe';
-import { withRouter, Link } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "unistore/react";
 import { actions } from "../store/store";
 import '../style/bootstrap.min.css'
 import '../style/home.css'
-import background from '../images/background.jpg'
-import logo from '../images/logo-orange.svg'
 
 const urlHeadLine = "https://api.edamam.com/search?app_id=7173ea48&app_key=609f58237cd3b846b334f7b7e3f681b2&q="
 
@@ -65,21 +63,28 @@ class Category extends React.Component {
                 )
             })
         }
-        return (
-            <React.Fragment>
-                <Header />
-                <div className="container-fluid">
-                    {this.props.isLoading?
-                    null
-                    :
-                    <div className="row search-result">
-                        {recipeToShow}
-                    </div>
-                    }
-                </div>
-            </React.Fragment>
 
-        )
+        if(this.props.auth==false){
+            return(
+                <Redirect to={{pathname:'/login'}}/>
+            )
+        } else{
+            return (
+                <React.Fragment>
+                    <Header />
+                    <div className="container-fluid">
+                        {this.props.isLoading?
+                        null
+                        :
+                        <div className="row search-result">
+                            {recipeToShow}
+                        </div>
+                        }
+                    </div>
+                </React.Fragment>
+
+            )
+        }
     }
 }
 export default connect('isLoading, data, search, listRecipe, category',actions)(withRouter(Category));
