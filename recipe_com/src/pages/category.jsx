@@ -6,6 +6,7 @@ import { connect } from "unistore/react";
 import { actions } from "../store/store";
 import '../style/bootstrap.min.css'
 import '../style/home.css'
+import '../style/recipe.css'
 import background from '../images/background.jpg'
 import logo from '../images/logo-orange.svg'
 
@@ -56,11 +57,14 @@ class Category extends React.Component {
         if(this.props.listRecipe!==undefined && this.props.listRecipe!==null){
             const listRecipe = this.props.listRecipe;
             console.log(listRecipe)
-            recipeToShow = listRecipe.map((item)=>{
+            recipeToShow = listRecipe.map((item, key)=>{
                 return(
                     <ListRecipe
+                    key={key}
+                    number={key}
                     image={item.recipe.image}
                     title={item.recipe.label}
+                    {...this.props}
                     />
                 )
             })
@@ -72,9 +76,16 @@ class Category extends React.Component {
                     {this.props.isLoading?
                     null
                     :
-                    <div className="row search-result">
-                        {recipeToShow}
-                    </div>
+                    <React.Fragment>
+                        <Link onClick = {()=>this.props.history.push('/recipe/'+this.props.number)}>
+                            <div className="category-title text-center brief-box">
+                                <h1>{this.props.category}</h1>
+                            </div>
+                        </Link>
+                        <div className="row search-result" style={{marginTop:'20px'}}>
+                            {recipeToShow}
+                        </div>
+                    </React.Fragment>
                     }
                 </div>
             </React.Fragment>
