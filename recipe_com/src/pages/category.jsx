@@ -7,8 +7,9 @@ import { actions } from "../store/store";
 import '../style/bootstrap.min.css'
 import '../style/home.css'
 import '../style/recipe.css'
+import '../style/loading.css'
 
-const urlHeadLine = "https://api.edamam.com/search?app_id=7173ea48&app_key=609f58237cd3b846b334f7b7e3f681b2&q="
+const urlHeadLine = "https://api.edamam.com/search?to=21&app_id=7173ea48&app_key=609f58237cd3b846b334f7b7e3f681b2&q="
 
 class Category extends React.Component {
     getRecipe = async () => {
@@ -27,6 +28,10 @@ class Category extends React.Component {
 
     componentDidMount = async () =>{
         await this.getRecipe()
+    }
+
+    componentWillUnmount = async () => {
+        await this.props.setChange('isLoading', true)
     }
 
     componentDidUpdate = async () => {
@@ -68,32 +73,29 @@ class Category extends React.Component {
             })
         }
 
-        if(this.props.auth==false){
-            return(
-                <Redirect to={{pathname:'/login'}}/>
-            )
-        } else{
-        return (
-            <React.Fragment>
-                <Header />
-                <div className="container-fluid">
-                    {this.props.isLoading?
-                    null
-                    :
-                    <React.Fragment>
-                        <div className="category-title text-center brief-box">
-                            <h1>{this.props.category}</h1>
-                        </div>
-                        <div className="row search-result" style={{marginTop:'20px'}}>
-                            {recipeToShow}
-                        </div>
-                    </React.Fragment>
-                    }
+    return (
+        <React.Fragment>
+            <Header />
+            <div className="container-fluid">
+                {this.props.isLoading?
+                <div className="loading-box">
+                    <i className="material-icons">cached</i>
                 </div>
-            </React.Fragment>
+                :
+                <React.Fragment>
+                    <div className="category-title text-center brief-box">
+                        <h1>{this.props.category}</h1>
+                    </div>
+                    <div className="row search-result" style={{marginTop:'20px'}}>
+                        {recipeToShow}
+                    </div>
+                </React.Fragment>
+                }
+            </div>
+        </React.Fragment>
 
-            )
-        }
+        )
+        
     }
 }
 export default connect('isLoading, data, search, listRecipe, category, auth',actions)(withRouter(Category));

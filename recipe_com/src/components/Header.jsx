@@ -49,7 +49,7 @@ class Header extends React.Component{
                                     
                                     <Link class="dropdown-item" onClick={() => this.handleCategory('Dinner')}>Dinner</Link>
                                     
-                                    <Link class="dropdown-item" onClick={() => this.handleCategory('Dessert')}>Dessert</Link>
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('Sweets')}>Sweets</Link>
                                     
                                 </div>
                             </li>
