@@ -1,62 +1,85 @@
-import React, { Component } from 'react';
-import Header from "../components/Header"
-import ListArticle from "../components/articleContent"
+import React from 'react';
+import Header from '../components/Header'; 
+import ListRecipe from '../components/ListRecipe';
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "unistore/react";
-import { actions, store } from "../store/store";
-import axios from "axios"
-import '../style/articles.css'
+import { actions } from "../store/store";
+import '../style/bootstrap.min.css'
+import '../style/home.css'
+import background from '../images/background.jpg'
+import logo from '../images/logo-orange.svg'
 
-const app_key = "609f58237cd3b846b334f7b7e3f681b2";
-const app_id = "7173ea48";
-const baseUrl = "https://api.edamam.com/search";
-const urlHeadline = baseUrl + "?app_key" + app_key + "&app_id=" + app_id;
+const urlHeadLine = "https://api.edamam.com/search?app_id=7173ea48&app_key=609f58237cd3b846b334f7b7e3f681b2&q="
 
-class Category extends Component {
-    componentDidMount = async () => { 
-        await this.props.handlePostApi(urlHeadline + '&q=' + this.props.category);
+class Category extends React.Component {
+    getRecipe = async () => {
+        const category = await this.props.match.params.category
+        this.props.setChange('category', category)
+        await this.props.handleGetApi(urlHeadLine+category)
+        const data = await this.props.data
+        if(data.hits!==undefined){
+            const dict = {
+                isLoading: false,
+                listRecipe: data.hits
+            }
+            await this.props.setManyChanges(dict)
+        }
     }
+
+    componentDidMount = async () =>{
+        await this.getRecipe()
+    }
+
+    componentDidUpdate = async () => {
+        console.log('this is inside will update')
+        const category = await this.props.match.params.category
+        console.log(category, this.props.category)
+        if(this.props.category!==category){
+            await this.props.setChange('isLoading', true)
+            console.log('check change', this.props.isLoading)
+        }
+    }
+
+    componentWillUpdate = async () =>{
+        console.log('this is inside update')
+        const category = await this.props.match.params.category
+        if(this.props.category!==category){
+            await this.getRecipe()
+            await this.props.setChange('category', category)
+        }
+    }
+
 
     render () {
-        let listRecipe;
-        const listArticle = this.props.data.articles
-        if(listArticle!==undefined){
-            console.warn('masuk')
-            const articleItem = listArticle.filter(item => {
-                if (item.content !== null && item.image !== null) {
-                    return item;
-                }
-                return false;
+        console.log(this.props.isLoading)
+        let recipeToShow;
+        if(this.props.listRecipe!==undefined && this.props.listRecipe!==null){
+            const listRecipe = this.props.listRecipe;
+            console.log(listRecipe)
+            recipeToShow = listRecipe.map((item)=>{
+                return(
+                    <ListRecipe
+                    image={item.recipe.image}
+                    title={item.recipe.label}
+                    />
+                )
             })
-    
-            listRecipe = articleItem.map((item, key) => {
-                return (
-                    <ListArticle 
-                        key={key} 
-                        title={item.title} 
-                        img={item.urlToImage} 
-                        content={item.description}
-                        url={item.url}
-                        publishedAt={item.publishedAt} />
-                );
-            });
         }
-
         return (
-            <div>
-                <Header {...this.props} />
-                <div className="container">
-                    <div className="row mt-5">
-                        <div className="col-md-3 col-12"></div>
-                        <div className="col-md-6 col-12">
-                            <h2 className="text-center">Health News</h2>
-                            {/* {fullArticle} */}
-                        </div>
-                        <div className="col-md-3 col-12"></div>
+            <React.Fragment>
+                <Header />
+                <div className="container-fluid">
+                    {this.props.isLoading?
+                    null
+                    :
+                    <div className="row search-result">
+                        {recipeToShow}
                     </div>
+                    }
                 </div>
-            </div>    
-        );
+            </React.Fragment>
+
+        )
     }
 }
-
-export default connect("isLoading, data", actions)(Category);
+export default connect('isLoading, data, search, listRecipe, category',actions)(withRouter(Category));

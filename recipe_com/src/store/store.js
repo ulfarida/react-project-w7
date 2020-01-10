@@ -13,7 +13,12 @@ const initialState = {
                 listRecipe: [],
                 data: {},
                 category : '',
-                isLoading: true
+                isLoading: true,
+                linkDropDown : [
+                    'breakfast',
+                    'lunch',
+                    'dinner'
+                ]
                 };
 
 export const store = createStore(initialState);

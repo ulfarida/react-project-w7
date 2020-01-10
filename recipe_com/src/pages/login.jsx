@@ -15,7 +15,7 @@ class Login extends Component {
             password : this.props.password
         }
         axios
-            .post("https://recipecom.free.beeceptor.com/login", input)
+            .post("https://reeraser.free.beeceptor.com/login", input)
             .then(function(response) {
                 if(response.data.hasOwnProperty("token")) {
                     store.setState({fullname : response.data.fullname})

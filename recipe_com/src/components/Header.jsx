@@ -14,7 +14,13 @@ class Header extends React.Component{
 
     }
 
+    handleCategory = (category) => {
+        this.forceUpdate()
+        this.props.history.push('/category/'+category);
+    }
+
     render(){
+
         return(
             <React.Fragment>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-orange sticky-top mb-0">
@@ -27,18 +33,24 @@ class Header extends React.Component{
                     </button>
 
                     <div className="collapse navbar-collapse" id="navbar">
-                        { this.props.auth? 
+                        { this.props.auth?
                         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">Article</Link>
+                                <Link className="nav-link" to="/articles">Article</Link>
                             </li>
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" role="button" id="categoryToogle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</Link>
                                 <div class="dropdown-menu bg-warning" aria-labelledby="categoryToogle">
-                                    <Link to='/breakfast' class="dropdown-item" onClick={() => store.setState({category:'breakfast'})}>Breakfast</Link>
-                                    <Link class="dropdown-item" onClick={() => store.setState({category:'lunch'})}>Lunch</Link>
-                                    <Link class="dropdown-item" onClick={() => store.setState({category:'dinner'})}>Dinner</Link>
-                                    <Link class="dropdown-item" onClick={() => store.setState({category:'dessert'})}>Dessert</Link>
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('breakfast')}>Breakfast</Link>
+
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('brunch')}>Brunch</Link>
+                                    
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('lunch')}>Lunch</Link>
+                                    
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('dinner')}>Dinner</Link>
+                                    
+                                    <Link class="dropdown-item" onClick={() => this.handleCategory('dessert')}>Dessert</Link>
+                                    
                                 </div>
                             </li>
                         </ul>
@@ -73,4 +85,4 @@ class Header extends React.Component{
     }
 }
 
-export default connect("auth", actions)(withRouter(Header))
+export default connect("auth, linkDropDown", actions)(withRouter(Header))
