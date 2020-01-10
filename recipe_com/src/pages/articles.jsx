@@ -33,7 +33,8 @@ class Articles extends Component {
                         img={item.urlToImage} 
                         content={item.description}
                         url={item.url}
-                        publishedAt={item.publishedAt} />
+                        publishedAt={item.publishedAt} 
+                    />
                 );
             });
         }

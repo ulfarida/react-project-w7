@@ -13,6 +13,7 @@ const initialState = {
                 listRecipe: [],
                 isLoading: true,
                 data: {},
+                recipeData: {},
                 selectedNutritiens : '',
                 category : ''
                 };

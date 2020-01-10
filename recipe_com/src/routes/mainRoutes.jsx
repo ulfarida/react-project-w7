@@ -6,6 +6,7 @@ import Login from '../pages/login'
 import Profile from '../pages/profile'
 import Articles from '../pages/articles'
 import NotMatch from '../pages/notMatch'
+import Recipe from '../pages/recipe'
 import RecipeAnalysis from '../pages/recipeAnalysis'
 import Home from '../pages/Home'
 import Category from '../pages/category'
@@ -19,10 +20,12 @@ const Mainroute = () => {
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/" component={Home}/>
+                    <Route path="/search" component={Home}/>
                     <Route path='/login' component={Login} />
                     <Route path='/profile' component={Profile} />
-                    <Route exact path='/articles' component={Articles} />
-                    <Route exact path='/analyze' component={RecipeAnalysis} />
+                    <Route path='/articles' component={Articles} />
+                    <Route path='/recipe/:index' component={Recipe} />
+                    <Route path='/analyze' component={RecipeAnalysis} />
                     <Route path='/category/:category' component={Category} />
                     <Route component={NotMatch} />
                 </Switch>

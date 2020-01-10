@@ -10,7 +10,7 @@ const ListRecipe = (props) => {
             <div className="img-box">
                 <img src={props.image} alt="recipe-image" width="100%"/>
                 <div className="title-popup">
-                    <Link>
+                    <Link onClick = {()=>props.history.push('/recipe/'+props.number)}>
                         <h4>{props.title}</h4>
                     </Link>
                 </div>
