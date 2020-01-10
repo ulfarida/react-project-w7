@@ -11,9 +11,10 @@ const initialState = {
                 profilePicture : '',
                 search: '',
                 listRecipe: [],
+                isLoading: true,
                 data: {},
-                category : '',
-                isLoading: true
+                selectedNutritiens : ''
+                category : ''
                 };
 
 export const store = createStore(initialState);
