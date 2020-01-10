@@ -33,8 +33,13 @@ class Home extends React.Component {
     }
 
     componentWillUnmount = async () => {
-        await this.props.setChange('isLoading', true)
-        await this.setState('isSearch', false)
+        try {
+            await this.props.setChange('isLoading', true)
+            await this.setState('isSearch', false)
+        }
+        catch (error) {
+            console.log(error)
+        }
     }
 
     render () {

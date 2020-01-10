@@ -6,6 +6,7 @@ import { actions, store } from "../store/store";
 import '../style/bootstrap.min.css'
 import '../style/articles.css'
 import '../style/loading.css'
+import '../style/recipe.css'
 import { Redirect } from 'react-router-dom';
 
 const apiKey = "58fecc904b4e40ef920ae5582000d89a";
@@ -64,8 +65,8 @@ class Articles extends Component {
                         <div className="container">
                             <div className="row mt-5">
                                 <div className="col-md-3 col-12"></div>
-                                <div className="col-md-6 col-12">
-                                    <h2 className="text-center">Health News</h2>
+                                <div className="col-md-6 col-12 brief-box" style={{marginTop:"-7%"}}>
+                                    <h1 className="text-center">Health News</h1>
                                     {fullArticle}
                                 </div>
                                 <div className="col-md-3 col-12"></div>
