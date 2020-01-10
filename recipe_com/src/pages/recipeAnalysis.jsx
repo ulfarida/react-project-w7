@@ -5,6 +5,7 @@ import { connect } from "unistore/react";
 import { actions, store } from "../store/store";
 import axios from "axios"
 import '../style/recipeAnalysis.css'
+import '../style/recipe.css'
 
 class RecipeAnalysis extends Component {
     // input ingredients json body, method post
@@ -61,7 +62,9 @@ class RecipeAnalysis extends Component {
                                 <div className="form-box">
                                     <form action="" method="" onSubmit={e => e.preventDefault()}>
                                         <div class="form-group">
-                                            <h2 className="input-ing text-center">Input Ingredients</h2>
+                                            <div className="brief-box" style={{marginTop:"-0.8em", marginBottom:"1em"}}>
+                                                <h1 className="text-center">Input Ingredients</h1>
+                                            </div>
                                             <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="6" placeholder="ingredients separate with comma (,)" name="ingredients" onChange={e => this.props.setInput(e)}></textarea>
                                         </div>
                                         <button className="btn btn-info btn-block login" type="submit" onClick={() => this.nutritionGetApi()}>Analyze your meal</button>
