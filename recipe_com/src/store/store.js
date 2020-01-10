@@ -12,7 +12,8 @@ const initialState = {
                 search: '',
                 listRecipe: [],
                 isLoading: true,
-                data: {}
+                data: {},
+                recipeData: {}
                 };
 
 export const store = createStore(initialState);

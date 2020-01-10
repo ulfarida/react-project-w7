@@ -15,7 +15,9 @@ class Home extends React.Component {
     handleSearch = async () =>{
         const keyword = await this.props.search
         console.log(keyword)
+        console.log(this.props)
         await this.props.handleGetApi(urlHeadLine+keyword)
+        this.props.history.push({pathname: '/search', search: '?q='+keyword})
         const data = await this.props.data
         const dict = {
             isLoading: false,
@@ -30,12 +32,14 @@ class Home extends React.Component {
         if(this.props.listRecipe!==undefined){
             const listRecipe = this.props.listRecipe;
             console.log(listRecipe)
-            recipeToShow = listRecipe.map((item)=>{
+            recipeToShow = listRecipe.map((item, key)=>{
                 return(
                     <ListRecipe
+                    key={key}
+                    number={key}
                     image={item.recipe.image}
                     title={item.recipe.label}
-                    />
+                    {...this.props}/>
                 )
             })
         }
