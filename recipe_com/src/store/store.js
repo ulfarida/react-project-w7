@@ -6,19 +6,14 @@ const initialState = {
                 username : '',
                 password : '',
                 email : '',
-                picture : '',
                 token : '',
                 auth : false,
+                profilePicture : '',
                 search: '',
                 listRecipe: [],
                 data: {},
                 category : '',
-                isLoading: true,
-                linkDropDown : [
-                    'breakfast',
-                    'lunch',
-                    'dinner'
-                ]
+                isLoading: true
                 };
 
 export const store = createStore(initialState);
@@ -38,17 +33,6 @@ export const actions = store => ({
     handleGetApi: async (state, urlHeadLine) => {
         await axios
         .get(urlHeadLine)
-        .then(async (response) => {
-            await store.setState({data: response.data})
-        })
-        .catch((error) => {
-            console.warn(error)
-        })
-    },
-
-    handlePostApi: async (state, urlHeadLine) => {
-        await axios
-        .post(urlHeadLine)
         .then(async (response) => {
             await store.setState({data: response.data})
         })
