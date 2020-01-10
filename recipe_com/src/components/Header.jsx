@@ -24,7 +24,7 @@ class Header extends React.Component{
         return(
             <React.Fragment>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-orange sticky-top mb-0">
-                    <Link className="navbar-brand mr-5" to="/">
+                    <Link className="navbar-brand mr-5" to="/" onClick={() => store.setState({listRecipe : []})}>
                         <img src={logo} alt="logo-web" style={{height:'40px'}}/>
                         <span className="logo-name">Recipe.com</span>
                         </Link>
@@ -64,7 +64,7 @@ class Header extends React.Component{
                             </Link>
                             <div class="dropdown-menu bg-warning profile-dropdown" aria-labelledby="categoryToogle">
                                 <Link class="dropdown-item" to="/profile">Profile</Link>
-                                <Link class="dropdown-item">Check Recipe</Link>
+                                <Link class="dropdown-item" to="/analyze">Check Recipe</Link>
                                 <Link class="dropdown-item" onClick={this.handleLogout}>Logout</Link>
                             </div>
                         </div>
