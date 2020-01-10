@@ -12,7 +12,9 @@ const initialState = {
                 search: '',
                 listRecipe: [],
                 isLoading: true,
-                data: {}
+                data: {},
+                jsonResult : {},
+                calories : ''
                 };
 
 export const store = createStore(initialState);
