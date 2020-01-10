@@ -11,8 +11,14 @@ const initialState = {
                 auth : false,
                 search: '',
                 listRecipe: [],
+                data: {},
+                category : '',
                 isLoading: true,
-                data: {}
+                linkDropDown : [
+                    'breakfast',
+                    'lunch',
+                    'dinner'
+                ]
                 };
 
 export const store = createStore(initialState);
@@ -30,9 +36,19 @@ export const actions = store => ({
     },
 
     handleGetApi: async (state, urlHeadLine) => {
-        console.log('masuk')
         await axios
         .get(urlHeadLine)
+        .then(async (response) => {
+            await store.setState({data: response.data})
+        })
+        .catch((error) => {
+            console.warn(error)
+        })
+    },
+
+    handlePostApi: async (state, urlHeadLine) => {
+        await axios
+        .post(urlHeadLine)
         .then(async (response) => {
             await store.setState({data: response.data})
         })
